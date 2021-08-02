@@ -1,0 +1,20 @@
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_openml
+mnist=fetch_openml('mnist_784',version=1,cache=True)
+x,y=mnist["data"],mnist["target"]
+x_train,x_test,y_train,y_test=train_test_split(x,y)
+from sklearn.decomposition import PCA
+import numpy as np
+pca=PCA()
+pca.fit(x_train)
+cumsum=np.cumsum(pca.explained_variance_ratio_)
+d=np.argmax(cumsum>=0.95)+1
+print(d)
+print(np.sum(pca.explained_variance_ratio_))
+pca=PCA(n_components=154)
+x_reduced=pca.fit_transform(x_train)
+x_recovered=pca.inverse_transform(x_reduced)
+import matplotlib.pyplot as plt
+img=x_recovered[1].reshape((28,28))
+plt.imshow(img,cmap="Greys")
+plt.show()
