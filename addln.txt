@@ -1,0 +1,193 @@
+class Animal:
+def speak(self):
+print("Animal Speaking")
+class Dog(Animal):
+def bark(self):
+print("dog barking")
+class DogChild(Dog):
+def eat(self):
+print("Eating")
+d=DogChild()
+d.bark()
+d.speak()
+d.eat()
+OUTPUT:-------------
+dog barking
+Animal Speaking
+Eating
+-----------------------------------------------------------------
+import matplotlib.pyplot as plt
+x=[1,2.0,2.25,3.0,4.0]
+y=[8,8.5,9.5,10.5,11.5]
+x1=[9,10.5,11.5,12.5,13.5]
+y1=[9.5,10,11,12.5,14]
+plt.scatter(x,y,label='high in c,low save')
+plt.scatter(x1,y1,label='low in c,low save',color='b')
+plt.xlabel("sav")
+plt.ylabel("inc")
+plt.legend()
+plt.show()
+OUTPUT:-------------
+<IMG>
+-----------------------------------------------------------------
+import matplotlib.pyplot as plt
+pop=[22,55,67,45,21,42]
+bins=[0,10,20,30,40,50,60]
+plt.hist(pop,bins,histtype='bar',rwidth=0.8)
+plt.xlabel("agegroup")
+plt.ylabel("noofpeople")
+plt.title("histogram")
+plt.show()
+OUTPUT:-------------
+<IMG>
+-----------------------------------------------------------------
+import pandas as pd
+df=pd.read_csv("http://rcs.bu.edu/examples/python/data_analysis/Salaries.csv")
+print(df[10:12])
+df_rank=df.groupby(['rank'])
+print(df_rank.mean())
+df_sorted=df.sort_values(by='service')
+print(df_sorted)
+OUTPUT:-------------
+rank discipline phd service sex salary
+10 Prof B 39 33 Male 128250
+11 Prof B 23 23 Male 134778
+phd service salary
+rank
+AssocProf 15.076923 11.307692 91786.230769
+AsstProf 5.052632 2.210526 81362.789474
+Prof 27.065217 21.413043 123624.804348
+rank discipline phd service sex salary
+55 AsstProf A 2 0 Female 72500
+23 AsstProf A 2 0 Male 85000
+43 AsstProf B 5 0 Female 77000
+17 AsstProf B 4 0 Male 92000
+12 AsstProf B 1 0 Male 88000
+.. ... ... ... ... ... ...
+40 Prof A 39 36 Female 137000
+27 Prof A 45 43 Male 155865
+36 Prof B 45 45 Male 146856
+0 Prof B 56 49 Male 186960
+9 Prof A 51 51 Male 57800
+[78 rows x 6 columns]
+-----------------------------------------------------------------
+import pandas as pd
+df=pd.read_csv("http://rcs.bu.edu/examples/python/data_analysis/Salaries.csv")
+print(df.head())
+df['salary'].dtype
+print(df['salary'])
+OUTPUT:-------------
+rank discipline phd service sex salary
+0 Prof B 56 49 Male 186960
+1 Prof A 12 6 Male 93000
+2 Prof A 23 20 Male 110515
+3 Prof A 40 31 Male 131205
+4 Prof B 20 18 Male 104800
+0 186960
+1 93000
+2 110515
+3 131205
+4 104800
+...
+73 105450
+74 104542
+75 124312
+76 109954
+77 109646
+Name: salary, Length: 78, dtype: int64
+-----------------------------------------------------------------
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.arange(0,3*np.pi,0.1)
+y=np.sin(x)
+#plt.plot(x,y)
+yy=np.sin(x)
+y1=np.cos(x)
+plt.plot(x,yy)
+plt.plot(x,y1)
+plt.show()
+OUTPUT:-------------
+<IMG>
+-----------------------------------------------------------------
+import numpy as np
+from scipy.spatial.distance import pdist,squareform
+x=np.array([(0,1),(1,0),(2,0)])
+print(x)
+d=squareform(pdist(x,'euclidean'))
+print(d)
+OUTPUT:-------------
+[[0 1]
+[1 0]
+[2 0]]
+[[0. 1.41421356 2.23606798]
+[1.41421356 0. 1. ]
+[2.23606798 1. 0. ]]
+-----------------------------------------------------------------
+class A:
+def __init__(self,a,b,c):
+self.a=a
+self.b=b
+self.c=c
+def summ(self):
+self.x=self.a+self.b+self.c
+print("sum is:",self.x)
+def area(self):
+self.s=self.x**2
+print("area %d"%self.s)
+b=A(2,3,4)
+b.summ()
+b.area()
+OUTPUT:-------------
+sum is: 9
+area 81
+-----------------------------------------------------------------
+m=[]
+n=int(input("enter n"))
+for i in range (n):
+m.append(int(input()))
+s=int(input("enter search"))
+t=0
+for i in range(n):
+if(s==m[i]):
+print("element {} found at {} position".format(s,i))
+t=1
+if(t==0):
+print("element not found")
+OUTPUT:-------------
+enter n5
+3
+4
+5
+5
+6
+enter search6
+element 6 found at 4 position
+-----------------------------------------------------------------
+n=int(input())
+for i in range(1,n+1):
+j=1
+c=0
+while(j<=i):
+if(i%j==0):
+c=c+1
+j=j+1
+if(c==2):
+print(i)
+OUTPUT:-------------
+9
+2
+3
+5
+7
+-----------------------------------------------------------------
+def rev(n):
+r=0
+c=0
+while(n>0):
+c=(n%10)
+r=(10*r+c)
+n=int(n/10)
+print(r)
+rev(1234)
+OUTPUT:-------------
+4321
